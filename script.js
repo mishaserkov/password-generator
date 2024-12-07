@@ -4,32 +4,72 @@ const characters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O"
 let passwordLengthRange = document.querySelector("#password-length-range");
 let passwordLengthValue = document.querySelector("#password-length-value");
 
-passwordLengthRange.addEventListener("input", () => {
+passwordLengthRange.addEventListener('input', () => {
     passwordLengthValue.value = passwordLengthRange.value;
+})
+
+let symbolsToggle = document.querySelector("#symbols-toggle");
+let numbersToggle = document.querySelector("#numbers-toggle");
+
+let hasSymbols = symbolsToggle.checked;
+let hasNumbers = numbersToggle.checked;
+
+symbolsToggle.addEventListener('input', () => {
+    hasSymbols = symbolsToggle.checked;
 });
 
+numbersToggle.addEventListener('input', () => {
+    hasNumbers = numbersToggle.checked;
+});
 
-// let passwordOne = document.querySelector("#password-one");
-// let passwordTwo = document.querySelector("#password-two");
+let passwordOne = document.querySelector("#password-one");
+let passwordTwo = document.querySelector("#password-two");
 
-// function generatePassword() {
-//     let generatedPasswordOne = "";
-//     let generatedPasswordTwo = "";
+passwordOne.addEventListener('click', () => copyToClipboard(passwordOne.textContent));
+passwordTwo.addEventListener('click', () => copyToClipboard(passwordTwo.textContent));
 
-//     for(i = 0; i < 15; i++) {
-//         generatedPasswordOne += characters[Math.floor(Math.random() * characters.length)]
-//         generatedPasswordTwo += characters[Math.floor(Math.random() * characters.length)]
-//     }
+function copyToClipboard(password) {
+    if(passwordOne.textContent && passwordTwo.textContent) {
+        navigator.clipboard.writeText(password)
+        .then(() => {
+            alert("Пароль успешно скопирован!");
+        })
+        .catch(err => {
+            console.error("Ошибка копирования пароля:", err);
+        });
+    }
+}
+
+function generatePassword() {
+    let filteredCharacters = "";
+
+    let generatedPasswordOne = "";
+    let generatedPasswordTwo = "";
+
+    if (hasSymbols && !hasNumbers) {
+        filteredCharacters = characters.filter(char => /\D/.test(char));
+    } else if (!hasSymbols && hasNumbers) {
+        filteredCharacters = characters.filter(char => /[a-zA-Z0-9]/.test(char));
+    } else if (!hasSymbols && !hasNumbers) {
+        filteredCharacters = characters.filter(char => /[a-zA-Z]/.test(char));
+    } else {
+        filteredCharacters = characters;
+    }
+
+    for(i = 0; i < passwordLengthValue.value; i++) {
+        generatedPasswordOne += filteredCharacters[Math.floor(Math.random() * filteredCharacters.length)]
+        generatedPasswordTwo += filteredCharacters[Math.floor(Math.random() * filteredCharacters.length)]
+    }
     
-//     passwordOne.textContent = generatedPasswordOne;
-//     passwordTwo.textContent = generatedPasswordTwo;
-// }
+    passwordOne.textContent = generatedPasswordOne;
+    passwordTwo.textContent = generatedPasswordTwo;
+}
 
 /*
 Stretch goals:
-- Ability to set password length
-- Add "copy-on-click"
-- Toggle "symbols" and "numbers on/off"
+- Ability to set password length +
+- Add "copy-on-click" +
+- Toggle "symbols" and "numbers on/off" +
 */
 
 
