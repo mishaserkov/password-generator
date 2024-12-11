@@ -6,28 +6,32 @@ body {
     background-color: #1c1c1c;
 }
 
-.generator__window {
-    width: 550px;
+.generator-window {
+    width: 650px;
     margin: 64px auto;
     padding: 115px 52px;
     background-color: #1f2937;
     color: #ffffff;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 10px;
 }
 
-.generator__heading {
+.generator-heading {
     font-family: Karla, sans-serif;
     font-size: 40px;
     font-weight: 800;
     line-height: 40px;
-    width: 370px;
+    /* width: 370px; */
 }
 
-.generator__heading span {
+.generator-heading span {
     color: #4adf86;
 }
 
-.generator__text {
+.generator-text {
     font-family: Inter, sans-serif;
     font-size: 20px;
     font-weight: 400;
@@ -37,9 +41,125 @@ body {
     width: 372px;
 }
 
-.generator__button {
-    background-color: #10b981;
+
+/* Password settings styles */
+
+.password-settings {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 50px;
+}
+
+
+.password-length-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.password-settings-text {
     color: #ffffff;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    user-select: none; 
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+.password-length-range {
+        appearance: none;
+        width: 100px;
+        height: 3px;
+        background: #273549;
+        outline: none;
+}
+
+.password-length-range::-webkit-slider-thumb {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    background: #10b981;
+    cursor: grab;
+}
+
+.password-length-value {
+    width: 42px;
+    height: 24px;
+    outline: none;
+    border: 1px solid #273549;
+    border-radius: 6px;
+    background-color: #273549;
+    text-align: center;
+    color: #10b981;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    box-sizing: border-box;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* #password-length-value:focus {
+    border: 1px solid #10b981;
+    box-shadow: 0 0 10px #10b981;
+    transition: 0.1s ease;
+} */
+
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+.password-toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.password-toggle-label input{
+    display: none;
+}
+
+.password-toggle {
+    position: relative;
+    background-color: #273549;
+    width: 42px;
+    height: 24px;
+    border-radius: 24px;
+    transition: 0.3s;
+}
+
+.password-toggle:hover {
+    box-shadow: 0 0 10px #10b981;
+    transition: 0.3s ease;
+}
+
+.password-toggle:before {
+    position: absolute;
+    content: '';
+    background-color: #D5D4D8;
+    width: 18px;
+    height: 18px;
+    border-radius: 12px;
+    margin: 3px;
+    transition: 0.3s;
+}
+
+.password-checkbox:checked + .password-toggle {
+    background-color: #10b981;
+}
+
+.password-checkbox:checked + .password-toggle:before {
+    transform: translateX(18px);
+}
+
+.generator-button {
+    background-color: #10b981;
+    color: #1f2937;
     font-family: Inter, sans-serif;
     font-size: 16px;
     font-weight: 500;
@@ -47,30 +167,37 @@ body {
     padding: 9px 16px;
     border-radius: 6px;
     border: none;
+    cursor: pointer;
 }
 
-.generator__passwords-container {
-    width: 446px;
+.generator-button:hover{
+    box-shadow: 0 0 10px #10b981;
+    transition: 0.1s ease;
+}
+
+.generator-passwords-container {
     margin-top: 30px;
     border-top: 1px solid #2F3E53;
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
 }
 
-.generator__passwords-field{
-    width: 210px;
+.generator-passwords-field{
+    width: 250px;
     height: 40px;
+    padding: 0 5px;
     background-color: #273549;
     text-align: center;
     border-radius: 6px;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #55f991;
     font-family: Inter, sans-serif;
     font-size: 16px;
     font-weight: 500;
     line-height: 32px;
-    margin-top: 35px;
-    
-}
-
-.generator__passwords-field:last-child {
-    margin-left: 20px;
+    margin-top: 35px;    
+    cursor: pointer;
 }

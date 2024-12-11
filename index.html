@@ -8,16 +8,32 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/favicon.ico">
     <title>Password generator</title>
 </head>
 <body>
-    <div class="generator__window">
-        <h1 class="generator__heading">Generate a <span>random password</span></h1>
-        <p class="generator__text">Never use an insecure password again.</p>
-        <button class="generator__button">Generate passwords</button>
-        <div class="generator__passwords-container">
-            <div class="generator__passwords-field">Хуй</div>
-            <div class="generator__passwords-field">Пизда</div>
+    <div class="generator-window">
+        <h1 class="generator-heading">Generate a <span>random password</span></h1>
+        <p class="generator-text">Never use an insecure password again.</p>
+        <div class="password-settings">
+            <div class="password-length-container">
+                <label for="password-length-range" class="password-settings-text">Length</label>
+                <input id="password-length-range" class="password-length-range" type="range" min="8" max="24" step="1" value="15">
+                <input id="password-length-value" class="password-length-value" type="number" min="8" max="24" value="15" readonly>
+            </div>
+            <label class="password-toggle-label password-settings-text">Symbols
+                <input class="password-checkbox" id="symbols-toggle" type="checkbox" checked>
+                <span class="password-toggle"></span>
+            </label>
+            <label class="password-toggle-label password-settings-text">Numbers
+                <input class="password-checkbox" id="numbers-toggle" type="checkbox" checked>
+                <span class="password-toggle"></span>
+            </label>
+        </div>
+        <button class="generator-button" onclick="generatePassword()">Generate passwords</button>
+        <div class="generator-passwords-container">
+            <div class="generator-passwords-field" id="password-one"></div>
+            <div class="generator-passwords-field" id="password-two"></div>
         </div>
     </div>
     <script src="script.js"></script>
